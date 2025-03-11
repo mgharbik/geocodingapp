@@ -11,8 +11,36 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-100">
+    <!-- Header with login button -->
+    <header class="bg-white shadow-md p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-gray-800">
+        <%= link_to "Geocoding App", root_path, class: "hover:text-blue-500" %>
+      </h1>
+      <nav>
+        <% if user_signed_in? %>
+          <span class="mr-4 text-gray-700">Welcome, <%= current_user.email %></span>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "text-blue-500 hover:text-blue-700 mr-4" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "text-blue-500 hover:text-blue-700" %>
+        <% end %>
+      </nav>
+    </header>
+
+    <!-- Flash notifications -->
+    <div class="container mx-auto mt-4">
+      <% flash.each do |key, message| %>
+        <div class="p-4 mb-4 rounded-lg 
+          <%= 'bg-green-100 text-green-700' if key == 'notice' %>
+          <%= 'bg-red-100 text-red-700' if key == 'alert' %>">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Main content -->
+    <main class="container mx-auto p-6">
       <%= yield %>
     </main>
   </body>
