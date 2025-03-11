@@ -21,4 +21,8 @@ RSpec.describe User, type: :model do
 
     expect(user).not_to be_valid
   end
+
+  it "enqueues a geocoding job after creation" do
+    expect { create(:user) }.to have_enqueued_job(GeocodeAddressJob)
+  end
 end

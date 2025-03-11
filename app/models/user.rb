@@ -7,4 +7,12 @@ class User < ApplicationRecord
   validates :street, presence: true
   validates :city, presence: true
   validates :zip, presence: true, numericality: { only_integer: true }, length: { is: 5 }
+
+  after_commit :enqueue_geocoding, on: :create
+
+  private
+
+  def enqueue_geocoding
+    GeocodeAddressJob.perform_later(id)
+  end
 end
