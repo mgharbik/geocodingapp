@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+    <p><strong><%= pluralize(resource.errors.count, "error") %> prevented this registration:</strong></p>
+    <ul class="mt-2">
+      <% resource.errors.full_messages.each do |message| %>
+        <li>- <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "User Login", type: :feature do
-  let!(:user) { User.create(email: "test@example.com", password: "password123") }
+  let!(:user) { create(:user, password: "password123") }
 
   scenario "User logs in successfully" do
     visit new_user_session_path
