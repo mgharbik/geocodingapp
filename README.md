@@ -1,24 +1,34 @@
-# README
+# GeocodingApp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails application running in a Dockerized development environment.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-* System dependencies
+## Setup
 
-* Configuration
+1. **Clone the repository**  
+   ```sh
+   git clone https://github.com/mgharbik/geocodingapp.git
+   cd geocodingapp
 
-* Database creation
+2. **Build and start the containers**  
+   ```sh
+   docker-compose up --build
 
-* Database initialization
+3. **Setup the database**  
+   ```sh
+   docker-compose run --rm app bin/rails db:create db:migrate
 
-* How to run the test suite
+4. **Access the application**  
+  - Open http://localhost:3000 in your browser.
 
-* Services (job queues, cache servers, search engines, etc.)
+5. **Stopping the application**  
+   ```sh
+   docker-compose down --volumes --remove-orphans
 
-* Deployment instructions
-
-* ...
+6. **Run all tests**  
+   ```sh
+   docker-compose run --rm -e "RAILS_ENV=test" app bundle exec rspec
