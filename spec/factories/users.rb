@@ -1,8 +1,10 @@
 FactoryBot.define do
   factory :user do
     email { "test@example.com" }
-    street { "123 Main St" }
+    password { "password123" }
+    password_confirmation { "password123" }
+    street { "Irisring 1" }
     city { "Berlin" }
-    zip { "12345" }
+    zip { "13089" }
   end
 end

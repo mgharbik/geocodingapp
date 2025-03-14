@@ -7,14 +7,16 @@ RSpec.feature "User Registration", type: :feature do
     fill_in "Email", with: "test@example.com"
     fill_in "Password", with: "password123"
     fill_in "Password confirmation", with: "password123"
-    fill_in "Street", with: "123 Main St"
+    fill_in "Street", with: "Irisring 1"
     fill_in "City", with: "Berlin"
-    fill_in "Zip", with: "10115"
+    fill_in "Zip", with: "13089"
 
     click_button "Sign Up"
 
     expect(page).to have_content("Welcome! You have signed up successfully.")
-    expect(page).to have_content("123 Main St")
+    expect(page).to have_content("Irisring 1")
+    expect(page).to have_content("Latitude: 52.566")
+    expect(page).to have_content("Longitude: 13.448")
   end
 
   scenario "User fails to sign up with missing fields" do
