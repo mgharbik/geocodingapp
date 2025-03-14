@@ -5,8 +5,6 @@ class GeocodeAddressJob < ApplicationJob
     user = User.find_by(id: user_id)
     return if user.blank?
 
-    coordinates =  GeocodeAddressService.new(user).call
-
-    GeocodeAddressChannel.broadcast_to(user, coordinates)
+    GeocodeAddressService.new(user).call
   end
 end
