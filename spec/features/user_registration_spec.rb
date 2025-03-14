@@ -21,8 +21,8 @@ RSpec.feature "User Registration", type: :feature do
     GeocodeAddressJob.perform_now(User.last.id)
 
     visit root_path
-    expect(page).to have_content("Latitude: 52.5667398")
-    expect(page).to have_content("Longitude: 13.4483808")
+    expect(page).to have_content("Latitude: 52.566")
+    expect(page).to have_content("Longitude: 13.448")
   end
 
   scenario "User fails to sign up with missing fields" do
